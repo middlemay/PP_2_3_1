@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <style type="text/css">
+        TABLE {
+            width: 70%;
+            border: 30px;
+            border-spacing: 7px 5px;
+        }
+
+        TD {
+            background: #e0cfbb;
+            border: 1px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr style="background-color: #b27e4f">
+        <th>Model</th>
+        <th>Series</th>
+        <th>Owner</th>
+    </tr>
+    <th:block th:each="car : ${cars}">
+        <tr>
+            <td th:text="${car.model}">...</td>
+            <td th:text="${car.series}">...</td>
+            <td th:text="${car.owner}">...</td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
