@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cars</title>
+    <title>Users</title>
     <style type="text/css">
         TABLE {
             width: 70%;
@@ -21,15 +21,17 @@
 <body>
 <table>
     <tr style="background-color: #b27e4f">
-        <th>Model</th>
-        <th>Series</th>
-        <th>Owner</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>City</th>
     </tr>
-    <th:block th:each="car : ${cars}">
+    <th:block th:each="user : ${users}">
         <tr>
-            <td th:text="${car.model}">...</td>
-            <td th:text="${car.series}">...</td>
-            <td th:text="${car.owner}">...</td>
+            <td th:text="${user.name}">...</td>
+            <td th:text="${user.surname}">...</td>
+            <td th:text="${user.age}">...</td>
+            <td th:text="${user.city}">...</td>
         </tr>
     </th:block>
 </table>
