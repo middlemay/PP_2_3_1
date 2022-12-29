@@ -5,25 +5,43 @@ import org.springframework.stereotype.Repository;
 import web.model.User;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
-@Transactional
+
 @Repository
-public class UserDaoImpl implements UserDao{
-
-    EntityManagerFactory entityManagerFactory;
-
-    public UserDaoImpl(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
-
+public class UserDaoImpl implements UserDao {
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getUsersList() {
-        return entityManagerFactory.createEntityManager().createQuery("from User").getResultList();
+        return entityManager.createQuery("from User").getResultList();
     }
+
+    @Override
+    public void saveUser(User user) {
+        entityManager.persist(user);
+    }
+
+    @Override
+    public void updateUser(int id, User updatedUser) {
+        User user = entityManager.find(User.class, id);
+        user.setName(updatedUser.getName());
+        user.setSurname(updatedUser.getSurname());
+        user.setAge(updatedUser.getAge());
+        user.setCity(updatedUser.getCity());
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        entityManager.remove(getUserById(id));
+
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return entityManager.find(User.class, id);
+    }
+
 }

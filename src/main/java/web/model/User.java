@@ -3,7 +3,7 @@ package web.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name= "users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,13 +12,13 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name= "surname")
+    @Column(name = "surname")
     private String surname;
 
-    @Column(name= "age")
+    @Column(name = "age")
     private int age;
 
-    @Column(name= "city")
+    @Column(name = "city")
     private String city;
 
     public User() {
@@ -29,6 +29,14 @@ public class User {
         this.surname = surname;
         this.age = age;
         this.city = city;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -72,4 +80,5 @@ public class User {
                 ", city='" + city + '\'' +
                 '}';
     }
+
 }
